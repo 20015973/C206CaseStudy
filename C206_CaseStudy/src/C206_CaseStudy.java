@@ -2,13 +2,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class C206_CaseStudy {
 
     static Scanner sc = new Scanner(System.in);
     static User currentUser;
     static ArrayList<User> users = new ArrayList<User>();
     static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+    static ArrayList<MonthlyMenu> monthlyMenus = new ArrayList<MonthlyMenu>();
     static ArrayList<Order> orders = new ArrayList<Order>();
     static ArrayList<Bill> bills = new ArrayList<Bill>();
     
@@ -108,21 +108,76 @@ public class C206_CaseStudy {
                     }
                 }
 
-                }
                 if(selection == 7){
+                	 System.out.println("Creating monthly menu...");
+                     System.out.println("Enter ID of monthly menu");
+                     int id = sc.nextInt();
+                     System.out.println("Enter date of monthly menu");
+                     String date = sc.next();
 
+                     //Western
+                     System.out.println("Select which menu item id is for western:");
+                     for(int i= 0; i< menuItems.size(); i++) {
+                         menuItems.get(i).show();
+                         System.out.println();
+                     }
+                     int idWestern = sc.nextInt();
+                     String western = getMenuItemNameById(idWestern);
+
+                     //asian
+                     System.out.println("Select which menu item id is for asian:");
+                     for(int i= 0; i< menuItems.size(); i++) {
+                         menuItems.get(i).show();
+                         System.out.println();
+                     }
+                     int idAsian = sc.nextInt();
+                     String asian = getMenuItemNameById(idAsian);
+
+                     //veggie
+                     System.out.println("Select which menu item id is for veggie:");
+                     for(int i= 0; i< menuItems.size(); i++) {
+                         menuItems.get(i).show();
+                         System.out.println();
+                     }
+                     int idVeggie = sc.nextInt();
+                     String veggie = getMenuItemNameById(idVeggie);
+
+                     MonthlyMenu monthlyMenu = new MonthlyMenu(id, date, western, asian, veggie);
+                     monthlyMenus.add(monthlyMenu);
+                     System.out.println("monthly menu added...");
+                 }
                 }
                 if(selection == 8){
-
-                }
+                	  System.out.println("Viewing monthly menu: ");
+                      for(int i= 0; i< monthlyMenus.size(); i++) {
+                          monthlyMenus.get(i).show();
+                          System.out.println();
+                      }
+                  }
+                
                 if(selection == 9){
-
-                }
+                	  System.out.println("Deleting monthly menu...");
+                      //remove menu item
+                      System.out.println("Enter ID of monthly menu to delete");
+                      int id = sc.nextInt();
+                      int index = -1;
+                      for(int i=0; i<monthlyMenus.size(); i++){
+                          if(menuItems.get(i).ID == id){
+                              index = i;
+                              break;
+                          }
+                      }
+                      if(index >= 0){
+                          menuItems.remove(index);
+                          System.out.println("Monthly Menu deleted!");
+                      } else {
+                          System.out.println("Monthly Menu doesnt exist");
+                      }
+                  }
                 if(selection == 10){
 
                     }
                 }
-            }
         
         if(currentUser.userType == "studentteacher"){
             showMenuStudentTeacher();
@@ -251,6 +306,29 @@ class MenuItem {
 	    System.out.println("Name: " + name);
 	    System.out.println("Price: $" + price);
 	  }
+	  class MonthlyMenu {
+		    int ID;
+		    String date;
+		    String western;
+		    String asian;
+		    String veggie;
+
+		    public MonthlyMenu(int ID, String date, String western, String asian, String veggie) {
+		        this.ID = ID;
+		        this.date = date;
+		        this.western = western;
+		        this.asian = asian;
+		        this.veggie = veggie;
+		    }
+
+		    public void show() {
+		        System.out.println("Monthly menu ID: "+ ID);
+		        System.out.println("Date: "+ date);
+		        System.out.println("western: "+ western);
+		        System.out.println("asian: "+ asian);
+		        System.out.println("veggie: "+ veggie);
+		    }
+		}
 }
 class Order {
     int ID;
