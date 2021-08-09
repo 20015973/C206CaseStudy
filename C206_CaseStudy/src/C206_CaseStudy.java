@@ -8,6 +8,7 @@ public class C206_CaseStudy {
     static Scanner sc = new Scanner(System.in);
     static User currentUser;
     static ArrayList<User> users = new ArrayList<User>();
+    static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
     
     public static void showMenuStudentTeacher() {
         System.out.println("1) View weekly menu");
@@ -71,12 +72,39 @@ public class C206_CaseStudy {
                     }
                 }
                 if(selection == 4){
-                 
+                    System.out.println("Enter Menu Item ID: ");
+                    int id = sc.nextInt();
+                    System.out.println("Enter Menu Item name: ");
+                    String name = sc.nextLine();
+                    System.out.println("Enter Menu Item price: ");
+                    String price = sc.next();
+                    menuItems.add(new MenuItem(id, name, price));
                 }
                 if(selection == 5){
-
+                    System.out.println("Showing all menu items:");
+                    for(int i= 0; i< menuItems.size(); i++) {
+                        menuItems.get(i).show();
+                        System.out.println();
+                    }
                 }
-                if(selection == 5){
+                if(selection == 6){
+                    //remove menu item
+                    System.out.println("Enter ID of menu item to delete");
+                    int id = sc.nextInt();
+                    int index = -1;
+                    for(int i=0; i<menuItems.size(); i++){
+                        if(menuItems.get(i).ID == id){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index >= 0){
+                        menuItems.remove(index);
+                        System.out.println("Menu Item deleted!");
+                    } else {
+                        System.out.println("Menu Item doesn't exist");
+                    }
+                }
 
                 }
                 if(selection == 7){
@@ -149,5 +177,23 @@ class User {
         this.username = username;
         this.userType = userType;
     }
+}
+class MenuItem {
+	  int ID;
+	  String name;
+	  String price;
+
+	  public MenuItem(int ID, String name, String price) {
+	    this.ID = ID;
+	    this.name = name;
+	    this.price = price;
+	  }
+
+	  public void show() {
+	    System.out.println("ID: " + ID);
+	    System.out.println("Name: " + name);
+	    System.out.println("Price: $" + price);
+	  }
+}
 }
 
