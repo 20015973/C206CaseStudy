@@ -9,6 +9,8 @@ public class C206_CaseStudy {
     static User currentUser;
     static ArrayList<User> users = new ArrayList<User>();
     static ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+    static ArrayList<Order> orders = new ArrayList<Order>();
+    static ArrayList<Bill> bills = new ArrayList<Bill>();
     
     public static void showMenuStudentTeacher() {
         System.out.println("1) View weekly menu");
@@ -128,27 +130,82 @@ public class C206_CaseStudy {
             int selection = sc.nextInt();
             if(selection == 1){
 
+              
+                    
+            	
+
             }
             if(selection == 2){
+            	 System.out.println("Enter order ID: ");
+                 int id = sc.nextInt();
+                 System.out.println("Enter order Date: ");
+                 String date = sc.next();
+                 System.out.println("Enter order meal: ");
+                 String meal = sc.nextLine();
+                 System.out.println("Enter order fruit: ");
+                 String fruit = sc.nextLine();
+                 System.out.println("Enter order drink: ");
+                 String drink = sc.nextLine();
+                 Order o = new Order(id, date, meal, fruit, drink);
+                 orders.add(o);
+                 System.out.println("Order created! ");
+             }
 
             }
             if(selection == 3){
+            	 System.out.println("Showing all orders...");
+                 showAllOrders();
 
             }
             if(selection == 4){
+            	 System.out.println("Enter ID of order to delete");
+                 int id = sc.nextInt();
+                 int index = -1;
+                 for(int i=0; i<orders.size(); i++){
+                     if(orders.get(i).ID == id){
+                         index = i;
+                         break;
+                     }
+                 }
+                 if(index >= 0){
+                     orders.remove(index);
+                     System.out.println("Order deleted!");
+                 } else {
+                     System.out.println("Order doesnt exist");
+                 }
+             }
 
-            }
+            
             if(selection == 5){
+            	
+                     System.out.println("Select which order id you would like to bill: ");
+                     showAllOrders();
+                     int id = sc.nextInt();
+                     Order o = getOrderById(id);
+                     System.out.println("Enter the amount of the bill: ");
+                     String amount = sc.next();
+                     Bill b = new Bill(id, o.date, amount, o.meal, o.drink, o.fruit);
+                     bills.add(b);
+                     System.out.println("Bill added!");
 
             }
             if(selection == 6){
+            	 showAllBills();
 
             }
 
-        }
-
+}
+}
+    public static void showAllOrders() {
+        for(int i=0; i< orders.size(); i++){
+            orders.get(i).show();
+        }  
     }
-
+    public static void showAllBills() {
+        for(int i=0; i< orders.size(); i++){
+            orders.get(i).show();
+        }  
+    }
 
     public static void getUser() {
         System.out.println("Enter username: ");
@@ -195,5 +252,52 @@ class MenuItem {
 	    System.out.println("Price: $" + price);
 	  }
 }
+class Order {
+    int ID;
+    String date;
+    String meal;
+    String fruit;
+    String drink;
+    public Order(int ID, String date, String meal, String fruit, String drink) {
+        this.ID = ID;
+        this.date = date;
+        this.meal = meal;
+        this.fruit = fruit;
+        this.drink = drink;
+    }
+
+    public void show() {
+        System.out.println("Order ID: "+ ID);
+        System.out.println("Date: "+ date);
+        System.out.println("meal: "+ meal);
+        System.out.println("fruit: "+ fruit);
+        System.out.println("drink: "+ drink);
+    }
+}
+class Bill {
+    int ID;
+    String date;
+    String amount; 
+    String meal;
+    String drink;
+    String fruit;
+
+    public Bill(int ID, String date, String amount, String meal, String drink, String fruit) {
+        this.ID = ID;
+        this.date = date;
+        this.amount = amount;
+        this.meal = meal;
+        this.drink = drink;
+        this.fruit = fruit;
+    }
+
+    public void show() {
+        System.out.println("Bill/Order ID: "+ ID);
+        System.out.println("Amount: $"+ amount);
+        System.out.println("Date: "+ date);
+        System.out.println("meal: "+ meal);
+        System.out.println("fruit: "+ fruit);
+        System.out.println("drink: "+ drink);
+    }
 }
 
