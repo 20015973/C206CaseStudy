@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class C206_CaseStudy {
 
     static Scanner sc = new Scanner(System.in);
