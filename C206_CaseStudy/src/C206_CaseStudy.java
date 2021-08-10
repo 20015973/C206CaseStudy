@@ -400,7 +400,7 @@ class MonthlyMenu {
 		System.out.println("Date: " + date);
 		System.out.println("western: " + western);
 		System.out.println("asian: " + asian);
-		System.out.println("asian: " + veggie);
+		System.out.println("veggie: " + veggie);
 	}
 }
 
