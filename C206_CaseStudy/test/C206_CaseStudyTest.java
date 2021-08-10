@@ -98,9 +98,6 @@ public void testViewAllOrder() {
 }
 
 	
-	
-
-
 public void testDeleteOrder() {
 	assertNotNull("Test if the list is empty but not null",orders);
 	orders.add(order1);
@@ -120,19 +117,27 @@ public void testAddBill() {
 	
 	
 }
-
+public void testDeleteOrderBills() {
+	assertNotNull("Test if the list is empty but not null",orders);
+	bills.add(orderbill1);
+	
+	assertEquals("Test if the order arraylist size is 2?",2,orders);
+	
+	Boolean isDelete=bills.remove(orderbill1);
+	assertTrue(isDelete);
+}
 	@After
 	public void tearDown() throws Exception {
 		orders=null;
 		order1=null;
 		order2=null;
 
-		
 
 		monthlyMenus=null;
         mm1=null;
         mm2=null;
-
+        
+        orderbill1 =null;
 	}
 
 	@Test
