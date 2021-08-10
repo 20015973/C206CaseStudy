@@ -114,7 +114,7 @@ public class C206_CaseStudy {
 						}
 					}
 					if (selection == 4) {
-						System.out.println("Creating monthly menu...");
+						System.out.println("Add monthly menu...");
 						System.out.println("Enter ID of monthly menu");
 						int id = sc.nextInt();
 						System.out.println("Enter date of monthly menu");
