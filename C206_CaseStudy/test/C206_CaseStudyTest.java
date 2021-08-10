@@ -17,11 +17,16 @@ private Order order2;
 private Bill orderbill1;
 private Bill orderbill2;
 
+private MenuItem mi1;
+private MenuItem mi2;
+
+
 
 
 
 
 private ArrayList<MonthlyMenu> monthlyMenus;
+private ArrayList<MenuItem> menuItem;
 
 
 private ArrayList<Order> orders;
@@ -38,11 +43,15 @@ public void setUp() throws Exception{
 	
 	orderbill1=new Bill(1,"12/12/2021", "$12.50", "Sushi","Orange","Tea");
 	orderbill2=new Bill(2,"13/12/2021", "$13.50", "Chicken Rice", "Apple", "Coffee");
+	
+	mi1 = new MenuItem(1, "Chicken Rice", "$3.50");
+    mi2 = new MenuItem(2, "Laksa", "$4.00");
     
 	
 	monthlyMenus=new ArrayList<MonthlyMenu>();
 	orders=new ArrayList<Order>();
 	bills=new ArrayList<Bill>();
+	menuItem=new ArrayList<MenuItem>();
 
 	
 }
@@ -139,6 +148,41 @@ public void testDeleteOrderBills() {
         
         orderbill1 =null;
 	}
+
+public void testAddMenuItem() {
+    assertNotNull("Test if we can add into MenuItem Arraylist",menuItem);
+    menuItem.add(mi1);
+    assertEquals("Test if the Menuitem Arraylist size is 1?",1,menuItem.size());
+    assertSame("Test that MenuItem added is not the same as the first MenuItem in the list", mi1,menuItem.get(0));
+   
+}
+
+public void testDeleteMenuItem() {
+    assertNotNull("Test if list is not null but empty.",menuItem);
+    monthlyMenus.add(mm1);
+    monthlyMenus.add(mm2);
+   
+    assertEquals("Test if the MenuItem arraylist size is 3?",3,menuItem);
+    Boolean isDelete=monthlyMenus.remove(mm1);
+    assertTrue(isDelete);
+}
+
+public void testViewMenuItem() {
+	assertNotNull("Test if there is valid MenuItem arraylist to add to", menuItem);
+
+    menuItem.add(mi1);
+	menuItem.add(mi2);
+	
+
+	
+	String testOutput=("Showing all orders...\n Menu ID: 1 \nmeal: Chicken Rice \nprice: $3.50");
+	testOutput+=("Showing all orders...\n Menu ID: 2 \nmeal: Laksa \nprice: $4.00");
+
+	assertEquals("Check that ViewAllCategory", testOutput,menuItem);
+}
+
+	
+
 
 	@Test
 	public void c206_test() {
