@@ -172,6 +172,7 @@ public class C206_CaseStudy {
 						}
 						if (index >= 0) {
 							menuItems.remove(index);
+							
 							System.out.println("Monthly Menu deleted!");
 						} else {
 							System.out.println("Monthly Menu doesnt exist");
