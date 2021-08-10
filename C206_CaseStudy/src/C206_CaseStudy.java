@@ -138,7 +138,7 @@ public class C206_CaseStudy {
 						int idAsian = sc.nextInt();
 						String asian = getMenuItemNameById(idAsian);
 
-						// asian
+						// veggie
 						System.out.println("Select which menu item id is for veggie:");
 						for (int i = 0; i < menuItems.size(); i++) {
 							menuItems.get(i).show();
@@ -400,7 +400,7 @@ class MonthlyMenu {
 		System.out.println("Date: " + date);
 		System.out.println("western: " + western);
 		System.out.println("asian: " + asian);
-		System.out.println("asian: " + asian);
+		System.out.println("asian: " + veggie);
 	}
 }
 
