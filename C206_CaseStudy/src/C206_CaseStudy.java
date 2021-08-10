@@ -165,13 +165,13 @@ public class C206_CaseStudy {
 						int id = sc.nextInt();
 						int index = -1;
 						for (int i = 0; i < monthlyMenus.size(); i++) {
-							if (menuItems.get(i).ID == id) {
+							if (monthlyMenus.get(i).ID == id) {
 								index = i;
 								break;
 							}
 						}
 						if (index >= 0) {
-							menuItems.remove(index);
+							monthlyMenus.remove(index);
 							System.out.println("Monthly Menu deleted!");
 						} else {
 							System.out.println("Monthly Menu doesnt exist");
@@ -349,6 +349,14 @@ public class C206_CaseStudy {
 		}
 		return "";
 	}
+   public static MonthlyMenu getMonthlyMenuById(int id) {
+	   for (int i=0; i<monthlyMenus.size();i++) {
+		   if(monthlyMenus.get(i).ID==id) {
+			   return monthlyMenus.get(i);
+		   }
+	   }
+	   return null;
+   }
 
 }
 
